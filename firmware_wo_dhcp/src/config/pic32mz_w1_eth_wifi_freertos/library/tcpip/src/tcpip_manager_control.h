@@ -48,7 +48,7 @@ Microchip or any third party.
 #define _TCPIP_MANAGER_CONTROL_H_
 
 #include "tcpip/tcpip_mac.h"
-#include "tcpip/src/link_list.h"
+
 // supported ETH frame types that are processed by the stack
 //
 
@@ -131,7 +131,7 @@ typedef union
         uint16_t bIsDHCPSrvEnabled      : 1;    // init: controls the DHCP Server enable/disable on the interface
                                                 // runtime: mirror bit set by the DHCP Server to reflect the current/last status
                                                 // TCPIP_STACK_ADDRESS_SERVICE_MASK has to match!!!
-		uint16_t bIsDnsClientEnabled    : 1;    // DNS client  enable/disable  .
+        uint16_t bIsDnsClientEnabled    : 1;    // DNS client  enable/disable  .
         uint16_t bIsDnsServerEnabled    : 1;    // DNS server Enable and Disable
         uint16_t bIsDNSServerAuto       : 1;    // DNS Server auto enable/disable on this interface
         uint16_t bInterfaceEnabled      : 1;    // 0 when TCPIP_MAC_POWER_DOWN/TCPIP_MAC_POWER_LOW 
@@ -307,7 +307,7 @@ typedef struct _TCPIP_STACK_MODULE_CTRL
     //
     uint16_t    nIfs;       // number of the interfaces supported in this session
     uint16_t    nAliases;   // number of alias interfaces in this session         
-	// number of the modules enabled in this session
+    // number of the modules enabled in this session
     int     nModules;
     // allocation parameters
     const void* memH;                   // handle to be used in the TCPIP_HEAP_ calls

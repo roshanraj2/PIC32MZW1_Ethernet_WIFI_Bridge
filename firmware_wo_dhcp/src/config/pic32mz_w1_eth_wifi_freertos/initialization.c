@@ -291,31 +291,7 @@ const TCPIP_IPV4_MODULE_CONFIG  tcpipIPv4InitData =
 };
 
 
-TCPIP_MAC_BRIDGE_ENTRY_BIN tcpipMacbridgeTable[2] = 
-{
-    {0},
-    {1},
-};
 
-/*** TCPIP MAC Bridge Initialization Data ***/
-const TCPIP_MAC_BRIDGE_CONFIG  tcpipBridgeInitData = 
-{
-    .purgeTimeout = TCPIP_MAC_BRIDGE_ENTRY_TIMEOUT,
-    .transitDelay = TCPIP_MAC_BRIDGE_MAX_TRANSIT_DELAY,
-    .fdbEntries = TCPIP_MAC_BRIDGE_FDB_TABLE_ENTRIES,
-    .pktPoolSize = TCPIP_MAC_BRIDGE_PACKET_POOL_SIZE,
-    .pktSize = TCPIP_MAC_BRIDGE_PACKET_SIZE,
-    .dcptPoolSize = TCPIP_MAC_BRIDGE_DCPT_POOL_SIZE,
-    .pktReplenish = TCPIP_MAC_BRIDGE_PACKET_POOL_REPLENISH,
-    .dcptReplenish = TCPIP_MAC_BRIDGE_DCPT_POOL_REPLENISH,
-    .bridgeFlags = TCPIP_MC_BRIDGE_INIT_FLAGS,
-    .bridgeTableSize = 2,
-    .bridgeTable = (const TCPIP_MAC_BRIDGE_ENTRY*)tcpipMacbridgeTable,
-    // advanced
-    .bridgePermTableSize = 0,
-    .bridgePermTable = 0,
-
-};
 
 
 
@@ -381,7 +357,6 @@ const TCPIP_STACK_MODULE_CONFIG TCPIP_STACK_MODULE_CONFIG_TBL [] =
 // MAC modules
     {TCPIP_MODULE_MAC_PIC32INT,     &tcpipMACPIC32INTInitData},     // TCPIP_MODULE_MAC_PIC32INT
 
-    {TCPIP_MODULE_MAC_BRIDGE,       &tcpipBridgeInitData},      // TCPIP_MODULE_MAC_BRIDGE 
 };
 
 const size_t TCPIP_STACK_MODULE_CONFIG_TBL_SIZE = sizeof (TCPIP_STACK_MODULE_CONFIG_TBL) / sizeof (*TCPIP_STACK_MODULE_CONFIG_TBL);
@@ -442,11 +417,13 @@ const DRV_ETHPHY_INIT tcpipPhyInitData_LAN8740 =
     .phyAddress             = DRV_LAN8740_PHY_ADDRESS,
     .phyFlags               = DRV_LAN8740_PHY_CONFIG_FLAGS,
     .pPhyObject             = &DRV_ETHPHY_OBJECT_LAN8740,
-    .resetFunction          = 0,
     .ethphyTmo              = &drvlan8740Tmo,
     .pMiimObject            = &DRV_MIIM_OBJECT_BASE_Default,
     .pMiimInit              = &drvMiimInitData_0,
     .miimIndex              = 0,
+
+
+    .resetFunction          = 0,
 };
 
 

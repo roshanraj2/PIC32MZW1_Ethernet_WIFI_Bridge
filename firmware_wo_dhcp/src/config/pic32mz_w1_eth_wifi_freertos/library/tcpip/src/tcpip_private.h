@@ -118,7 +118,6 @@ void _TCPIPStack_Condition(bool cond, const char* fileName, const char* funcName
 #include "tcpip/src/tcpip_commands_manager.h"
 #include "tcpip/src/udp_manager.h"
 #include "tcpip/src/lldp_manager.h"
-#include "tcpip/src/tcpip_mac_bridge_manager.h"
 #include "tcpip/src/tcpip_packet.h"
 #include "tcpip/src/tcpip_helpers_private.h"
 #include "tcpip/src/oahash.h"

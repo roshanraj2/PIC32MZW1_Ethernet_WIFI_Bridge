@@ -160,6 +160,10 @@ extern "C" {
 
 
 /*** WiFi PIC32MZW1 Driver Configuration ***/
+
+#pragma region name="wlan_mem" origin=0xa0040000 size=0x10000
+#define PIC32MZW_RSR_PKT_NUM    (0x10000 / sizeof(WDRV_PIC32MZW_PKT_LIST_NODE))
+
 #define WDRV_PIC32MZW1_DEVICE_USE_SYS_DEBUG
 #define WDRV_PIC32MZW_WPA3_PERSONAL_SUPPORT
 #define WDRV_PIC32MZW_BA414E_SUPPORT
@@ -300,7 +304,7 @@ extern "C" {
 #define TCPIP_ARP_GRATUITOUS_PROBE_COUNT			1
 #define TCPIP_ARP_TASK_PROCESS_RATE		        	2000
 #define TCPIP_ARP_PRIMARY_CACHE_ONLY		        	true
-#define TCPIP_ARP_COMMANDS true
+#define TCPIP_ARP_COMMANDS false
 
 
 
@@ -319,6 +323,7 @@ extern "C" {
 #define TCPIP_NETWORK_DEFAULT_POWER_MODE_IDX0         "full"
 #define TCPIP_NETWORK_DEFAULT_INTERFACE_FLAGS_IDX0            \
                                                     TCPIP_NETWORK_CONFIG_DHCP_CLIENT_ON |\
+                                                    TCPIP_NETWORK_CONFIG_DNS_CLIENT_ON |\
                                                     TCPIP_NETWORK_CONFIG_IP_STATIC
                                                     
 #define TCPIP_NETWORK_DEFAULT_MAC_DRIVER_IDX0         WDRV_PIC32MZW1_MACObject
@@ -337,7 +342,7 @@ extern "C" {
 #define TCPIP_NETWORK_DEFAULT_HOST_NAME_IDX1              "MCHPBOARD_E"
 #define TCPIP_NETWORK_DEFAULT_MAC_ADDR_IDX1               0
 
-#define TCPIP_NETWORK_DEFAULT_IP_ADDRESS_IDX1         "0.0.0.0"
+#define TCPIP_NETWORK_DEFAULT_IP_ADDRESS_IDX1         "192.168.100.10"
 #define TCPIP_NETWORK_DEFAULT_IP_MASK_IDX1            "255.255.255.0"
 #define TCPIP_NETWORK_DEFAULT_GATEWAY_IDX1            "192.168.100.1"
 #define TCPIP_NETWORK_DEFAULT_DNS_IDX1                "192.168.100.1"
@@ -345,6 +350,7 @@ extern "C" {
 #define TCPIP_NETWORK_DEFAULT_POWER_MODE_IDX1         "full"
 #define TCPIP_NETWORK_DEFAULT_INTERFACE_FLAGS_IDX1            \
                                                     TCPIP_NETWORK_CONFIG_DHCP_CLIENT_ON |\
+                                                    TCPIP_NETWORK_CONFIG_DNS_CLIENT_ON |\
                                                     TCPIP_NETWORK_CONFIG_IP_STATIC
                                                     
 #define TCPIP_NETWORK_DEFAULT_MAC_DRIVER_IDX1         DRV_ETHMAC_PIC32MACObject
@@ -538,30 +544,6 @@ extern "C" {
 
 
 
-/*** Bridge Configuration ***/
-#define TCPIP_STACK_USE_MAC_BRIDGE
-#define TCPIP_STACK_MAC_BRIDGE_COMMANDS true
-#define TCPIP_MAC_BRIDGE_FDB_TABLE_ENTRIES          17
-#define TCPIP_MAC_BRIDGE_MAX_PORTS_NO               2
-#define TCPIP_MAC_BRIDGE_PACKET_POOL_SIZE           8
-#define TCPIP_MAC_BRIDGE_PACKET_SIZE                1536
-#define TCPIP_MAC_BRIDGE_PACKET_POOL_REPLENISH      2
-#define TCPIP_MAC_BRIDGE_DCPT_POOL_SIZE             16
-#define TCPIP_MAC_BRIDGE_DCPT_POOL_REPLENISH        4
-/* Advanced */
-#define TCPIP_MAC_BRIDGE_ENTRY_TIMEOUT              300
-#define TCPIP_MAC_BRIDGE_MAX_TRANSIT_DELAY          1
-#define TCPIP_MAC_BRIDGE_TASK_RATE                  333
-
-#define TCPIP_MAC_BRIDGE_STATISTICS          		false
-#define TCPIP_MAC_BRIDGE_EVENT_NOTIFY          		false
-
-#define TCPIP_MAC_BRIDGE_IF_NAME_TABLE false
-
-#define TCPIP_MC_BRIDGE_INIT_FLAGS                  \
-                                                    0
-
-#define TCPIP_STACK_MAC_BRIDGE_DISABLE_GLUE_PORTS false
 
 
 
